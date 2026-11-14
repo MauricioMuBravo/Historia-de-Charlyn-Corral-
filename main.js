@@ -12,11 +12,11 @@ function runCounters(){
 }
 setTimeout(runCounters,400);
 
-/* ---------- Reveal on scroll ---------- */
+/* ---------- scroll ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ---------- HERO 3D ---------- */
+/* ---------- 3D ---------- */
 function hero(){
   const canvas=document.getElementById('hero-canvas');
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
@@ -28,7 +28,7 @@ function hero(){
   const dl=new THREE.DirectionalLight(0xffffff,.9); dl.position.set(-3,4,5); scene.add(dl);
   const pl=new THREE.PointLight(0xf5c451,1.4,20); pl.position.set(4,-2,4); scene.add(pl);
 
-  // Soccer-style ball: subdivided icosahedron, faces around the 12 original vertices tinted navy
+  // Estilo de balón
   const R=1.55;
   const geo=new THREE.IcosahedronGeometry(R,2);
   const base=new THREE.IcosahedronGeometry(1,0).attributes.position;
@@ -49,7 +49,7 @@ function hero(){
   ball.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:0x8090c0,transparent:true,opacity:.35})));
   scene.add(ball);
 
-  // Orbit of 176 golden "goals"
+  // 176 goles
   const N=176, gpos=new Float32Array(N*3), seeds=[];
   for(let i=0;i<N;i++){seeds.push({a:Math.random()*Math.PI*2,r:2.4+Math.random()*1.1,y:(Math.random()-.5)*.5,s:.12+Math.random()*.25});}
   const gGeo=new THREE.BufferGeometry(); gGeo.setAttribute('position',new THREE.BufferAttribute(gpos,3));
@@ -87,17 +87,17 @@ function hero(){
 
 /* ---------- Carousel ---------- */
 const stages=[
-  {yr:'1991 – 2014',name:'Ecatepec · Louisville',img:'img/juvenil.jpg',pos:'50% 25%',flag:'México · EE.UU.',big:'8,671',bigS:'dominadas · Récord Guinness',c1:'#1fae6b',c2:'#0b4d33',
+  {yr:'1991 – 2014',name:'Ecatepec · Louisville',img:'juvenil.jpg',pos:'50% 25%',flag:'México · EE.UU.',big:'8,671',bigS:'dominadas · Récord Guinness',c1:'#1fae6b',c2:'#0b4d33',
    pts:['Nace el 11 de septiembre de 1991 en Ecatepec, Estado de México.','A los 13 años logra un Récord Guinness con 8,671 dominadas seguidas.','Juega futbol universitario con la Universidad de Louisville (EE.UU.).','Selección Sub-20: 24 partidos y 18 goles (2006-2010).']},
-  {yr:'2014',name:'Merilappi United',img:'img/louisville.jpg',pos:'50% 30%',flag:'Finlandia · Kansallinen Liiga',big:'5',bigS:'goles en 8 partidos',c1:'#3d7bd9',c2:'#13245c',
+  {yr:'2014',name:'Merilappi United',img:'louisville.jpg',pos:'50% 30%',flag:'Finlandia · Kansallinen Liiga',big:'5',bigS:'goles en 8 partidos',c1:'#3d7bd9',c2:'#13245c',
    pts:['Su primer paso profesional en Europa: Laponia, Finlandia.','Marca 5 goles en 8 partidos de liga.']},
-  {yr:'2015 – 2019',name:'Levante UD',img:'img/levante.jpg',pos:'53% 15%',flag:'España · Liga F',big:'86',bigS:'goles en 117 partidos de liga',c1:'#c0213a',c2:'#1d2f7a',
+  {yr:'2015 – 2019',name:'Levante UD',img:'levante.jpg',pos:'53% 15%',flag:'España · Liga F',big:'86',bigS:'goles en 117 partidos de liga',c1:'#c0213a',c2:'#1d2f7a',
    pts:['Cuatro temporadas, todas con 20 goles o más en liga.','Pichichi 2017-18 con 24 goles.','Su mejor resultado colectivo fue el 3er lugar en 2018-19.']},
-  {yr:'2019 – 2021',name:'Atlético de Madrid',img:'img/atletico.jpg',pos:'50% 15%',flag:'España · Liga F',big:'8',bigS:'goles en 20 partidos de liga',c1:'#d0263a',c2:'#5a0f1b',
+  {yr:'2019 – 2021',name:'Atlético de Madrid',img:'atletico.jpg',pos:'50% 15%',flag:'España · Liga F',big:'8',bigS:'goles en 20 partidos de liga',c1:'#d0263a',c2:'#5a0f1b',
    pts:['Gana la Supercopa de España, con una final 3-0 ante su exequipo, el Levante.','Una rotura del ligamento cruzado de la rodilla izquierda la deja fuera siete meses.','Termina su contrato y regresa a México en 2021.']},
-  {yr:'2021 – hoy',name:'CF Pachuca',img:'img/pachuca.jpg',pos:'62% 20%',flag:'México · Liga MX Femenil',big:'176+',bigS:'goles en Liga MX (mayo 2026)',c1:'#2e5bd8',c2:'#0a1a4d',
+  {yr:'2021 – hoy',name:'CF Pachuca',img:'pachuca.jpg',pos:'62% 20%',flag:'México · Liga MX Femenil',big:'176+',bigS:'goles en Liga MX (mayo 2026)',c1:'#2e5bd8',c2:'#0a1a4d',
    pts:['Es la máxima goleadora histórica del club y la primera en llegar a 100 goles (agosto de 2024).','Gana el campeonato del Clausura 2025, el primer título de liga del club y de su carrera.','Suma cinco títulos de goleo, cuatro de ellos consecutivos.','A mayo de 2026 era la 2ª goleadora histórica de la liga, a 5 de Alicia Cervantes (181).']},
-  {yr:'Selección',name:'México',img:'img/seleccion.jpg',pos:'50% 10%',flag:'Selección Femenil Mayor',big:'38',bigS:'goles en 65 partidos (FotMob)',c1:'#0f8a4f',c2:'#7a1020',
+  {yr:'Selección',name:'México',img:'seleccion.jpg',pos:'50% 10%',flag:'Selección Femenil Mayor',big:'38',bigS:'goles en 65 partidos (FotMob)',c1:'#0f8a4f',c2:'#7a1020',
    pts:['Es la 2ª goleadora histórica de la Selección Femenil.','Oro en los Juegos Panamericanos Santiago 2023.','Oro en los Juegos Centroamericanos y del Caribe 2018 y 2023.','Marca 7 goles en la eliminatoria de Concacaf de 2025 rumbo al Mundial 2027.']}
 ];
 function carousel(){
@@ -163,7 +163,7 @@ function chart(){
   const d2=new THREE.DirectionalLight(0x5ec8ff,.4); d2.position.set(-6,3,-4); scene.add(d2);
 
   const world=new THREE.Group(); scene.add(world);
-  // pitch texture
+  // textura de canchs
   const tc=document.createElement('canvas'); tc.width=1024; tc.height=640; const g=tc.getContext('2d');
   for(let i=0;i<10;i++){g.fillStyle=i%2?'#167a4c':'#1a8a56'; g.fillRect(i*102.4,0,102.4,640);}
   g.strokeStyle='rgba(255,255,255,.75)'; g.lineWidth=5;
@@ -205,7 +205,7 @@ function chart(){
   document.querySelectorAll('[data-ds]').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('[data-ds]').forEach(x=>x.classList.remove('on')); b.classList.add('on'); build(b.dataset.ds);}));
 
-  // drag rotate
+  // rotate
   let drag=false, px=0, vy=0, targetY=-.25, idle=0;
   canvas.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;const r=canvas.getBoundingClientRect();mouse.x=((e.clientX-r.left)/r.width)*2-1;mouse.y=-((e.clientY-r.top)/r.height)*2+1;idle=0;try{canvas.setPointerCapture(e.pointerId);}catch(_){}});
   canvas.addEventListener('pointerup',()=>drag=false);canvas.addEventListener('pointercancel',()=>drag=false);
@@ -260,7 +260,7 @@ if(isTouch){
   const ch=[...document.querySelectorAll('#origen p')].find(p=>p.textContent.includes('cubo')); if(ch)ch.textContent='Toca el cubo para detenerlo.';
   document.querySelector('.cube-wrap').addEventListener('click',function(){const c=this.querySelector('.cube');c.style.animationPlayState=c.style.animationPlayState==='paused'?'running':'paused';});
 }
-/* ---------- Tilt cards ---------- */
+/* ---------- Titulo de cartas ---------- */
 if(!reduce)document.querySelectorAll('.tilt').forEach(c=>{
   c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
     c.style.transform=`rotateY(${(x-.5)*18}deg) rotateX(${(.5-y)*18}deg) translateZ(10px)`;
@@ -273,7 +273,7 @@ if(!isTouch&&!reduce)document.querySelectorAll('.stat').forEach(c=>{
   c.addEventListener('pointerleave',()=>c.style.transform='');
 });
 
-/* ---------- Author card tilt ---------- */
+/* ---------- Autor de Mau ---------- */
 (function(){const c=document.getElementById('author-card'); if(!c||isTouch||reduce)return;
   c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
     c.style.transform=`perspective(1200px) rotateY(${(x-.5)*8}deg) rotateX(${(.5-y)*8}deg)`;c.style.setProperty('--gx',x*100+'%');c.style.setProperty('--gy',y*100+'%');});
