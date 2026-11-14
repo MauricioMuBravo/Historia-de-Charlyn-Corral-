@@ -39,7 +39,7 @@ nav a:hover{border-color:var(--gold);color:var(--gold)}
 @keyframes bob{50%{transform:translate(-50%,6px)}}
 .hint3d{position:absolute;right:24px;bottom:24px;z-index:2;font-size:.72rem;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:99px;background:rgba(6,11,29,.6)}
 
-.hero-photo{position:absolute;top:0;right:1%;bottom:0;width:45%;background:url(../img/portada.jpg) 50% 0/cover no-repeat;
+.hero-photo{position:absolute;top:0;right:1%;bottom:0;width:45%;background:url(portada.jpg) 50% 0/cover no-repeat;
   -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 22%,#000 88%,transparent 100%),linear-gradient(to top,transparent 0%,#000 22%);
   -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,#000 22%,#000 88%,transparent 100%),linear-gradient(to top,transparent 0%,#000 22%);mask-composite:intersect;
   opacity:.92;transform:scale(1.04);animation:heroPhoto 1.6s ease-out both}
